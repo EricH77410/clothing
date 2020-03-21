@@ -13,6 +13,7 @@ import ShopPage from './pages/shop/shop'
 import SignInSignUp from './pages/signin-signup/signin-signup'
 import CheckoutPage from './pages/checkout/checkout'
 
+
 import './App.css';
 
 class App extends React.Component {
@@ -36,11 +37,11 @@ class App extends React.Component {
           })
         })
       }
-      setCurrentUser(userAuth)
+      setCurrentUser(userAuth)      
     })
   }
   
-  componentWillMount() {
+  componentWillUnmount() {
     this.unsubcribeFromAuth = null
   }
 

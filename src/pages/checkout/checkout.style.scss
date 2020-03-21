@@ -24,13 +24,27 @@
   }
 
   .total {
-    margin-top: 30px;
-    margin-left: auto;
+    // margin-top: 30px;
+    // margin-left: auto;
     font-size: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+
+    .btn-clear-cart {
+      // margin-left: 0;
+      background-color: orangered;
+      margin-bottom: 2rem;
+
+      &:hover {
+        color: white;
+      }
+    }
   }
 
   button {
-    margin-left: auto;
+    // margin-left: auto;
     margin-top: 40px;
   }
 

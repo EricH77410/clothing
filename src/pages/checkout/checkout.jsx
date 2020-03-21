@@ -2,13 +2,15 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { createStructuredSelector } from 'reselect'
 import { selectCartItems, selectCartTotal } from '../../redux/cart/cart.selectors'
+import { emptyCart } from '../../redux/cart/cart.actions'
 
 import CheckoutItem from '../../components/chekout-item/checkout-item'
 import StripCkeckoutButton from '../../components/stripe/stripe-button'
+import CustomButton from '../../components/custom-button/custom-button'
 
 import './checkout.style.scss'
 
-const CheckoutPage = ({ cartItems, total }) => (
+const CheckoutPage = ({ cartItems, total, emptyCart }) => (
   <div className="checkout-page">
     <div className="checkout-header">
       <div className="header-block">
@@ -33,7 +35,13 @@ const CheckoutPage = ({ cartItems, total }) => (
     }
 
     <div className="total">
-      <span>TOTAL: ${total} €</span>
+      <CustomButton 
+        stylesOptions="btn-clear-cart"
+        onClick={()=>emptyCart()}
+      >
+        Clear Cart
+      </CustomButton>
+      <div>TOTAL: ${total} €</div>
     </div>
     <div className="test-warning">
       *Please use the following test credit card for payments*
@@ -46,7 +54,11 @@ const CheckoutPage = ({ cartItems, total }) => (
 
 const mapStateToProps = createStructuredSelector({
   cartItems: selectCartItems,
-  total: selectCartTotal
+  total: selectCartTotal  
 })
 
-export default connect(mapStateToProps)(CheckoutPage)
+const mapDispatchToProps = dispatch => ({
+  emptyCart: () => dispatch(emptyCart())
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(CheckoutPage)
