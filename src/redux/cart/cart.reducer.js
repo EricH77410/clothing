@@ -28,7 +28,7 @@ const cartReducer = (state = INTIAL_STATE, action) => {
         ...state,
         cartItems: removeOneItem(state.cartItems, action.payload)
       }
-    case CartActionTypes.EMPTY_CART:
+    case CartActionTypes.CLEAR_CART:
       return {
         ...state,
         cartItems: []
