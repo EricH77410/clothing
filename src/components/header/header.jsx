@@ -6,6 +6,7 @@ import { signOutStart } from '../../redux/user/user.actions'
 import { selectCartHidden } from '../../redux/cart/cart.selectors'
 import { selectCurrentUser } from '../../redux/user/user.selector'
 
+import UserDisplay from '../user/user-display'
 import CartIcon from '../cart-icon/cart-icon'
 import CartDropdown from '../cart/cart-dropdown'
 
@@ -23,7 +24,10 @@ const Header = ({ currentUser, hidden, signOutStart }) => (
       <OptionLink to="/shop">CONTACT</OptionLink>
       {
         currentUser ?
-          <OptionLink as="div" onClick={signOutStart}>SIGN OUT</OptionLink>        
+          <>
+            <OptionLink as="div" onClick={signOutStart}>SIGN OUT</OptionLink> 
+            <UserDisplay />
+          </>    
         : <OptionLink to='/signin'>SIGN IN</OptionLink>
       }
       <CartIcon />

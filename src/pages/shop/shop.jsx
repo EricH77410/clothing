@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Route } from 'react-router-dom'
 import { connect } from 'react-redux'
  
@@ -11,15 +11,11 @@ import CollectionPageContainer from '../collection/collection-container'
 // const CollectionOverviewWithSpinner = WithSpinner(CollectionOverview)
 //const CollectionPageWithSpinner = WithSpinner(CollectionPage)
 
-class ShopPage extends React.Component {
+const ShopPage = ({ fetchCollectionStart, match }) => {
 
-  componentDidMount() {
-    const { fetchCollectionStart } = this.props
+  useEffect(() => {
     fetchCollectionStart()
-  }
-
-  render() {
-    const { match } = this.props
+  },[fetchCollectionStart])
     return (
       <div className="shop-page">
         <Route 
@@ -31,8 +27,7 @@ class ShopPage extends React.Component {
           component={CollectionPageContainer}          
         />
       </div>
-    )
-  }    
+    ) 
 } 
 
 const mapDispatchToProps = dispatch => ({
